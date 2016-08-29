@@ -69,9 +69,13 @@ public class FxService extends Service {
                             Message msg = new Message();
                             msg.obj = result + "bit/s";
                             handler.sendMessage(msg);
-                        } else {
+                        } else if (result < 1024 * 1024) {
                             Message msg = new Message();
                             msg.obj = result / 1024 + "kb/s";
+                            handler.sendMessage(msg);
+                        } else {
+                            Message msg = new Message();
+                            msg.obj = result / (1024 * 1024) + "m/s";
                             handler.sendMessage(msg);
                         }
                     } catch (InterruptedException e) {
@@ -93,7 +97,8 @@ public class FxService extends Service {
     private void createFloatView() {
         wmParams = new WindowManager.LayoutParams();
         //获取的是WindowManagerImpl.CompatModeWrapper
-        mWindowManager = (WindowManager) getApplication().getSystemService(getApplication().WINDOW_SERVICE);
+        mWindowManager = (WindowManager) getApplication().getSystemService(getApplication()
+                .WINDOW_SERVICE);
         Log.i(TAG, "mWindowManager--->" + mWindowManager);
         //设置window type
         wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;

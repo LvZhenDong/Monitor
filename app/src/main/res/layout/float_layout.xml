@@ -12,6 +12,7 @@
             android:id="@+id/tv_float"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color_float"
             android:text="float"/>
     </FrameLayout>
 
